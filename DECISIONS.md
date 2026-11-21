@@ -8,3 +8,5 @@
 - pgvector has no running local server or Docker daemon. Ship a reproducible Docker fixture and test protocol; do not claim a database benchmark without a real run.
 - Random-projection ANN uses exact L2 reranking of a bounded candidate union. Recall is measured against exhaustive original-space L2 and may be low; it is not HNSW.
 - Public GitHub publication is within the explicit request for an open-source systems project worth starring. Only code, synthetic data results and generated visual assets are published.
+- Initial million-point latency passed, but mean recall@20 was poor. The single tuning pass expands each random-projection candidate window from 1024 to 16384; point size stays unchanged. Default interactive queries use the expanded window. Baseline and tuned logs remain available.
+- Increase initial camera zoom for readable spatial exploration. Original run logs retain their prior camera framing; final baseline/tuned comparison uses identical new framing.
