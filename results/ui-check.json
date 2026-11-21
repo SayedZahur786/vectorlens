@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-11-21T14:01:41.876Z",
+  "checks": [
+    "invalid point rejected",
+    "file ingest and full UMAP",
+    "external vector returns neighbors",
+    "screen-space point picking",
+    "full-view lasso selects every point",
+    "pgvector snapshot → live query → mapped GPU highlight",
+    "no browser runtime errors"
+  ],
+  "passed": true,
+  "demo": {
+    "n": 2500,
+    "d": 32,
+    "projection": "full UMAP",
+    "fixture": "seeded synthetic clusters"
+  }
+}

@@ -63,7 +63,7 @@ node scripts/ingest.mjs ./embeddings.jsonl ./embeddings.json
 
 **pgvector:** set `DATABASE_URL`, `PG_TABLE`, `PG_ID`, and `PG_VECTOR` in `.env.local` (see [.env.example](.env.example)), restart the server, then choose “Load configured pgvector.” Use a read-only role, a unique stable ID column, and an L2 HNSW index. Database IDs map to the loaded snapshot; reload after mutations. The adapter quotes validated identifiers and parameterizes query vectors. It never creates an index on your existing database.
 
-For a disposable database, `docker compose up -d`, then run `DATABASE_URL=postgresql://vectorlens:vectorlens@127.0.0.1:5432/vectorlens node scripts/seed-pg.mjs`. The container requires Docker; no cloud account is involved. This environment lacked a running database, so the pgvector adapter is **not integration-verified** and has no claimed latency measurement.
+For a disposable database, `docker compose up -d`, then run `DATABASE_URL=postgresql://vectorlens:vectorlens@127.0.0.1:5432/vectorlens node scripts/seed-pg.mjs`. The container requires Docker; no cloud account is involved. The adapter was integration-tested against an isolated local PostgreSQL + pgvector fixture, including actual HNSW index use, stable ID mapping, and invalid-input rejection. [Raw integration evidence](results/pg-check.json) is separate from the browser headline. Reproduce with `DATABASE_URL=... node scripts/pg-check.mjs` after seeding.
 
 ## Reproduce the headline in under five minutes
 
@@ -93,7 +93,7 @@ See [PLAN.md](PLAN.md) for related work and [DECISIONS.md](DECISIONS.md) for imp
 - File ingestion materializes JSON and original vectors in memory. High-dimensional collections can exhaust browser memory long before GPU point rendering becomes the bottleneck.
 - Lasso and picking scan projected points on the main thread and can pause interaction on large collections. Selection of the whole cloud also creates a large highlight buffer.
 - Search accepts vectors or point IDs; natural-language embedding generation is deliberately absent. Use your own embedding model to produce compatible query vectors.
-- PostgreSQL load is a bounded snapshot, not a streaming or transactional synchronization protocol. The database route has not been tested against a live database here. Keep the server local.
+- PostgreSQL load is a bounded snapshot, not a streaming or transactional synchronization protocol. The database route was tested on a local synthetic fixture, not your production database. Keep the server local.
 - Display-rate averages do not imply every frame meets its deadline. Raw intervals and p95 tails remain available. CI runs tests and the production build; hardware performance claims come from local runs, not CI.
 
 MIT licensed. Contributions that improve recall, projection fidelity, or reproducibility are especially welcome.

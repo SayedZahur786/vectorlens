@@ -1,0 +1,16 @@
+
+> vectorlens@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ ANN full candidate window equals exact L2 including external queries (3.335291ms)
+✔ validation rejects malformed inputs (0.232042ms)
+✔ query validates dimensions and finite values (0.167292ms)
+✔ lasso includes interior and excludes exterior (0.068125ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 78.309916
