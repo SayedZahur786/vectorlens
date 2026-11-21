@@ -1,4 +1,80 @@
-'use client';
-import {useEffect} from 'react';
-import {mount} from '../lib/viewer';
-export default function Page(){useEffect(()=>mount(),[]);return <main><header><div className="brand">◈ VECTORLENS <span>EMBEDDING OBSERVATORY</span></div><div className="local">● LOCAL COMPUTE / NO UPLOAD</div></header><section className="intro"><div><p className="eyebrow">FROM VECTORS TO STRUCTURE</p><h1>See the neighborhood.</h1><p>Explore the shape of your embeddings. Follow a query through the cloud.</p></div><div className="count"><strong id="count">—</strong><span>VECTORS IN VIEW</span></div></section><section className="workspace"><div className="viewport"><canvas id="map"/><svg id="overlay"><polyline id="lasso" fill="#72f5ce22" stroke="#72f5ce"/></svg><div className="map-tag">3D MANIFOLD <span id="mode">INITIALIZING</span></div><div className="legend">● semantic neighborhoods <b>● query neighbors</b></div><div className="hint">DRAG orbit · SCROLL zoom · SHIFT + DRAG lasso · CLICK inspect</div></div><aside><p className="eyebrow">LIVE VECTOR SEARCH</p><h2>Find the closest.</h2><label htmlFor="query">Point ID or JSON query vector</label><textarea id="query" defaultValue="420"/><button id="search">Illuminate neighbors ↗</button><div id="status" role="status">Starting worker…</div><div className="divider"/><p className="eyebrow">INSPECTOR</p><div id="selection">Click a point to inspect its original-space neighbors.</div><ol id="neighbors"/><div className="divider"/><label className="file">Open embedding JSON<input id="file" type="file" accept=".json"/></label><button id="database" className="secondary">Load configured pgvector</button><p className="small">L2 distance · worker ANN · GPU points<br/>Projection distance is not semantic distance.</p></aside></section><footer><span>VECTORLENS / SYSTEMS EXPLORATION</span><span id="fps">AWAITING FIRST FRAME</span></footer></main>}
+"use client";
+import { useEffect } from "react";
+import { mount } from "../lib/viewer";
+export default function Page() {
+  useEffect(() => mount(), []);
+  return (
+    <main>
+      <header>
+        <div className="brand">
+          ◈ VECTORLENS <span>EMBEDDING OBSERVATORY</span>
+        </div>
+        <div className="local">● LOCAL COMPUTE / NO UPLOAD</div>
+      </header>
+      <section className="intro">
+        <div>
+          <p className="eyebrow">FROM VECTORS TO STRUCTURE</p>
+          <h1>See the neighborhood.</h1>
+          <p>
+            Explore the shape of your embeddings. Follow a query through the
+            cloud.
+          </p>
+        </div>
+        <div className="count">
+          <strong id="count">—</strong>
+          <span>VECTORS IN VIEW</span>
+        </div>
+      </section>
+      <section className="workspace">
+        <div className="viewport">
+          <canvas id="map" />
+          <svg id="overlay">
+            <polyline id="lasso" fill="#72f5ce22" stroke="#72f5ce" />
+          </svg>
+          <div className="map-tag">
+            3D MANIFOLD <span id="mode">INITIALIZING</span>
+          </div>
+          <div className="legend">
+            ● semantic neighborhoods <b>● query neighbors</b>
+          </div>
+          <div className="hint">
+            DRAG orbit · SCROLL zoom · SHIFT + DRAG lasso · CLICK inspect
+          </div>
+        </div>
+        <aside>
+          <p className="eyebrow">LIVE VECTOR SEARCH</p>
+          <h2>Find the closest.</h2>
+          <label htmlFor="query">Point ID or JSON query vector</label>
+          <textarea id="query" defaultValue="420" />
+          <button id="search">Illuminate neighbors ↗</button>
+          <div id="status" role="status">
+            Starting worker…
+          </div>
+          <div className="divider" />
+          <p className="eyebrow">INSPECTOR</p>
+          <div id="selection">
+            Click a point to inspect its original-space neighbors.
+          </div>
+          <ol id="neighbors" />
+          <div className="divider" />
+          <label className="file">
+            Open embedding JSON
+            <input id="file" type="file" accept=".json" />
+          </label>
+          <button id="database" className="secondary">
+            Load configured pgvector
+          </button>
+          <p className="small">
+            L2 distance · worker ANN · GPU points
+            <br />
+            Projection distance is not semantic distance.
+          </p>
+        </aside>
+      </section>
+      <footer>
+        <span>VECTORLENS / SYSTEMS EXPLORATION</span>
+        <span id="fps">AWAITING FIRST FRAME</span>
+      </footer>
+    </main>
+  );
+}
