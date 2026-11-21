@@ -1,0 +1,2 @@
+import pg from 'pg';import {fixture} from '../lib/engine.mjs';
+const client=new pg.Client({connectionString:process.env.DATABASE_URL});await client.connect();try{const data=fixture(10000,32);await client.query('BEGIN');for(let i=0;i<10000;i++)await client.query('INSERT INTO embeddings VALUES ($1,$2::vector) ON CONFLICT (id) DO NOTHING',[i,JSON.stringify(Array.from(data.subarray(i*32,(i+1)*32)))]);await client.query('COMMIT');}finally{await client.end();}
